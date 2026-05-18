@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 const Footer = () => (
   <footer className="bg-noir text-ivory/70">
     <div className="container mx-auto px-4 md:px-8 py-16">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
         {/* Brand */}
         <div className="md:col-span-1">
           <img src={logo} alt="Mehfil-e-Ishq" className="h-12 w-auto mb-4" />
@@ -55,6 +55,21 @@ const Footer = () => (
               <Instagram size={20} className="transform hover:scale-110 transition-transform" />
               <span>@dawateeishq.pk</span>
             </a>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div>
+          <h4 className="text-gold font-heading text-lg mb-4">Our Location</h4>
+          <div className="w-full h-32 rounded-lg overflow-hidden border border-gold/20 shadow-md transition-all duration-300 hover:border-gold/50 hover:shadow-gold/10">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57904.38466141369!2d67.1952219!3d24.8970081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb3309a0a334f59%3A0x6e9f24b276709dc!2sMalir%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh!5e0!3m2!1sen!2spk!4v1716000000000!5m2!1sen!2spk"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              title="Mehfil-e-Ishq Location Map"
+            ></iframe>
           </div>
         </div>
       </div>

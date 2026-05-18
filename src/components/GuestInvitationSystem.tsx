@@ -140,6 +140,19 @@ const GuestInvitationSystem = () => {
     toast.success(`RSVP ${status}!`);
   };
 
+  const formatTime = (timeStr: string) => {
+    if (!timeStr) return "06:00 PM";
+    try {
+      const [hours, minutes] = timeStr.split(":");
+      const hrs = parseInt(hours, 10);
+      const ampm = hrs >= 12 ? "PM" : "AM";
+      const formattedHrs = hrs % 12 || 12;
+      return `${String(formattedHrs).padStart(2, "0")}:${minutes} ${ampm}`;
+    } catch (e) {
+      return timeStr;
+    }
+  };
+
   // Luxury Card download function using Canvas
   const downloadInvitationCard = () => {
     const canvas = document.createElement("canvas");
@@ -208,13 +221,13 @@ const GuestInvitationSystem = () => {
     ctx.fillStyle = "#fcf9f2";
     ctx.font = "18px 'Georgia', serif";
     ctx.fillText("request the honor of your presence to celebrate the", canvas.width / 2, 360);
-    ctx.fillText(formData.eventName || "Wedding Celebration", canvas.width / 2, 400);
+    ctx.fillText(formData.eventName || "Wedding Ceremony", canvas.width / 2, 400);
     ctx.fillText("of their beloved children", canvas.width / 2, 440);
 
     // Groom's Name
     ctx.fillStyle = "#e5c158";
     ctx.font = "italic 600 56px 'Georgia', serif";
-    ctx.fillText(formData.groomName || "Groom Name", canvas.width / 2, 540);
+    ctx.fillText(formData.groomName || "Haris", canvas.width / 2, 540);
 
     // Ampersand symbol
     ctx.fillStyle = "#fcf9f2";
@@ -224,7 +237,7 @@ const GuestInvitationSystem = () => {
     // Bride's Name
     ctx.fillStyle = "#e5c158";
     ctx.font = "italic 600 56px 'Georgia', serif";
-    ctx.fillText(formData.brideName || "Bride Name", canvas.width / 2, 690);
+    ctx.fillText(formData.brideName || "Sana", canvas.width / 2, 690);
 
     // Date
     ctx.fillStyle = "#fcf9f2";
@@ -236,12 +249,12 @@ const GuestInvitationSystem = () => {
 
     // Time
     ctx.font = "20px 'Georgia', serif";
-    ctx.fillText(`at ${formData.eventTime || "06:00 PM"}`, canvas.width / 2, 850);
+    ctx.fillText(`at ${formatTime(formData.eventTime)}`, canvas.width / 2, 850);
 
     // Venue/Location
     ctx.fillStyle = "#e5c158";
     ctx.font = "italic 22px 'Georgia', serif";
-    const locLines = (formData.eventLocation || "Mansion Marquee, Karachi, Pakistan").split(",");
+    const locLines = (formData.eventLocation || "Mansion Marquee, Clifton, Karachi").split(",");
     let yPos = 930;
     locLines.forEach(line => {
       ctx.fillText(line.trim(), canvas.width / 2, yPos);
@@ -255,7 +268,7 @@ const GuestInvitationSystem = () => {
 
     // Generate link & trigger download
     const link = document.createElement("a");
-    link.download = `invitation_${formData.groomName || "groom"}_and_${formData.brideName || "bride"}.png`;
+    link.download = `invitation_${formData.groomName || "haris"}_and_${formData.brideName || "sana"}.png`;
     link.href = canvas.toDataURL("image/png");
     link.click();
     toast.success("Premium Invitation Card downloaded successfully!");
@@ -463,7 +476,7 @@ const GuestInvitationSystem = () => {
                   {/* Body */}
                   <div className="my-2">
                     <p className="text-ivory/70 font-body text-[11px]">request the honor of your presence to celebrate the</p>
-                    <p className="text-gold font-heading text-sm font-bold tracking-wide mt-1 uppercase">{formData.eventName || "Wedding Celebration"}</p>
+                    <p className="text-gold font-heading text-sm font-bold tracking-wide mt-1 uppercase">{formData.eventName || "Wedding Ceremony"}</p>
                     <p className="text-ivory/70 font-body text-[11px] mt-1">of their beloved children</p>
                     
                     <p className="text-gold font-heading text-3xl font-bold italic mt-4 tracking-wide leading-none">{formData.groomName || "Haris"}</p>
@@ -475,10 +488,10 @@ const GuestInvitationSystem = () => {
                   <div className="mb-4">
                     <p className="text-ivory font-heading text-xs font-semibold uppercase tracking-widest border-t border-b border-gold/20 py-1">
                       {formData.eventDate 
-                        ? new Date(formData.eventDate).toLocaleDateString("en-US", { weekday: 'long', month: 'long', day: 'numeric' })
-                        : "Monday, June 15"}
+                        ? new Date(formData.eventDate).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+                        : "Monday, June 15, 2026"}
                     </p>
-                    <p className="text-ivory/80 font-body text-xs mt-1">at {formData.eventTime || "06:00 PM"}</p>
+                    <p className="text-ivory/80 font-body text-xs mt-1">at {formatTime(formData.eventTime)}</p>
                     <p className="text-gold font-body text-[11px] italic mt-3 max-w-[280px] truncate-3-lines leading-snug">
                       {formData.eventLocation || "Mansion Marquee, Clifton, Karachi"}
                     </p>

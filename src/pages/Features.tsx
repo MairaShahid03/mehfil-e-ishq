@@ -5,7 +5,6 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import PremiumTestimonialsCarousel from "@/components/PremiumTestimonialsCarousel";
 import GuestInvitationSystem from "@/components/GuestInvitationSystem";
 import InteractiveVenueMap from "@/components/InteractiveVenueMap";
-import MoodBoardCreator from "@/components/MoodBoardCreator";
 import AIDecorPreviewGenerator from "@/components/AIDecorPreviewGenerator";
 
 const Features = () => {
@@ -29,7 +28,7 @@ const Features = () => {
               Our Premium <span className="text-gold">Interactive Features</span>
             </h1>
             <p className="max-w-2xl mx-auto text-ivory/60 font-body text-md md:text-lg leading-relaxed">
-              Dawat-e-Ishq delivers premium tools to design, curate, and perfect every detail of your dream event. From custom guest cards to AI decor previews and bespoke mood boards.
+              Dawat-e-Ishq delivers premium tools to design, curate, and perfect every detail of your dream event. From custom guest cards to AI decor previews and interactive venue maps.
             </p>
             <div className="gold-divider mt-8" />
           </motion.div>
@@ -68,18 +67,7 @@ const Features = () => {
         <InteractiveVenueMap />
       </motion.div>
 
-      {/* 4. Mood Board Creator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="border-t border-gold/10"
-      >
-        <MoodBoardCreator />
-      </motion.div>
-
-      {/* 5. AI Decor Preview */}
+      {/* 4. AI Decor Preview */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
